@@ -21,6 +21,9 @@ class Lead(models.Model):
     age = models.IntegerField(default=0)
     agent = models.ForeignKey('Agent', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return (self.first_name+" "+self.last_name)
+
     # phoned = models.BooleanField(default=False)
     # source = models.CharField(choices=SOURCE_CHOICES, max_length=100)
 
@@ -29,4 +32,7 @@ class Lead(models.Model):
 
 
 class Agent(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)    
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username

@@ -7,3 +7,4 @@ else this will create a folder called djcrm and another djcrm insied it
 
 1:17:02
 1:30:00
+1:58:00
