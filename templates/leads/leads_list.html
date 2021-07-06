@@ -12,12 +12,13 @@
 </style>
 
 <body>
-    
+    <a href="{% url 'leads:leads_create' %}">Create Leads</a>
+    <hr>
     <h1>This is Lead List</h1>
 
     <ul>
         {% for lead in leads %}
-           <li><a href="{% url 'leads_detail' lead.id %}">{{lead}}</a></li>
+           <li><a href="{% url 'leads:leads_detail' lead.id %}">{{lead}}</a></li>
         {% endfor %}
     </ul>
 
