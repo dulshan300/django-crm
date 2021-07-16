@@ -1,10 +1,10 @@
 from django.urls import path
 from leads.views import (
-    lead_detail,
-    lead_update,
-    leads_list,
-    lead_create,
-    lead_delete,
+    # lead_detail,
+    # lead_update,
+    # leads_list,
+    # lead_create,
+    # lead_delete,
     LeadListView,
     LeadDetailView,
     LeadCreateView,
