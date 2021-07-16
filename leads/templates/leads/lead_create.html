@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Lead</title>
-</head>
-
-<body>
+{% block content %}
     <a href="{% url 'leads:leads_list' %}">Back To Lead List</a>
     <hr>
     <h1>Create a new lead</h1>
@@ -19,6 +11,4 @@
         <button type="submit">Save</button>
     </form>
 
-</body>
-
-</html>
+{% endblock %}

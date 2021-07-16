@@ -7,6 +7,9 @@ from django.urls import reverse
 # Create your views here.
 
 
+def landing_page(request):
+    return render(request,'landing.html')
+
 def leads_list(request):
     leads = Lead.objects.all()
     context = {
@@ -48,7 +51,7 @@ def lead_update(request,id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect(reverse('leads:leads_list'))
+            return redirect(reverse('leads:leads_detail',args=[lead.id]))
         else:
             pass
 
