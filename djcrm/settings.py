@@ -133,3 +133,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # need to tell django that we are using a custome user model for auth
 
 AUTH_USER_MODEL  ='leads.User'
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.yourserver.com'
+EMAIL_PORT = '<your-server-port>'
+EMAIL_HOST_USER = 'your@djangoapp.com'
+EMAIL_HOST_PASSWORD = 'your-email account-password'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
