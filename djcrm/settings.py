@@ -143,3 +143,6 @@ EMAIL_HOST_USER = 'your@djangoapp.com'
 EMAIL_HOST_PASSWORD = 'your-email account-password'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+# Login Redirection
+LOGIN_REDIRECT_URL = "/leads"
