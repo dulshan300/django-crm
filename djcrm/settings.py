@@ -146,3 +146,4 @@ EMAIL_USE_SSL = False
 
 # Login Redirection
 LOGIN_REDIRECT_URL = "/leads"
+LOGIN_URL = '/login'

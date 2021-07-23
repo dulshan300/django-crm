@@ -1,10 +1,13 @@
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Agent, Lead
 from .forms import LeadForm, LeadModelForm, CustomUserCreationForm
 from django.urls import reverse
+
+
 
 # Create your views here.
 
@@ -26,7 +29,7 @@ class LandingPageView(TemplateView):
 #     return render(request, 'landing.html')
 
 
-class LeadListView(ListView):
+class LeadListView(LoginRequiredMixin,ListView):
     template_name = "leads/leads_list.html"
     queryset = Lead.objects.all()
     # This object will pass an 'object_list' in to the context.
@@ -43,7 +46,7 @@ class LeadListView(ListView):
 #     return render(request, 'leads/leads_list.html', context)
 
 
-class LeadDetailView(DetailView):
+class LeadDetailView(LoginRequiredMixin,DetailView):
     template_name = "leads/lead_detail.html"
     queryset = Lead.objects.all()
     # This object will pass an 'object_list' in to the context.
@@ -59,7 +62,7 @@ class LeadDetailView(DetailView):
 #     return render(request, 'leads/lead_detail.html', context)
 
 
-class LeadCreateView(CreateView):
+class LeadCreateView(LoginRequiredMixin,CreateView):
     template_name = "leads/lead_create.html"
     form_class = LeadModelForm
 
@@ -92,7 +95,7 @@ class LeadCreateView(CreateView):
 #     return render(request, 'leads/lead_create.html', context)
 
 
-class LeadUpdateView(UpdateView):
+class LeadUpdateView(LoginRequiredMixin,UpdateView):
     template_name = "leads/lead_update.html"
     form_class = LeadModelForm
     queryset = Lead.objects.all()
@@ -122,7 +125,7 @@ class LeadUpdateView(UpdateView):
 #     return render(request, 'leads/lead_update.html', context)
 
 
-class LeadDeleteView(DeleteView):
+class LeadDeleteView(LoginRequiredMixin,DeleteView):
     template_name = "leads/lead_delete.html"
     queryset = Lead.objects.all()
 
