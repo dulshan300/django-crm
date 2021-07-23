@@ -1,3 +1,4 @@
+from agents.mixins import OrganizerLoginRequiredMixin
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -31,10 +32,17 @@ class LandingPageView(TemplateView):
 
 class LeadListView(LoginRequiredMixin,ListView):
     template_name = "leads/leads_list.html"
-    queryset = Lead.objects.all()
+    
     # This object will pass an 'object_list' in to the context.
     # we can use context_object_name to rewrite default return object name
     context_object_name = "leads"
+    def get_queryset(self):
+        agent = Agent.objects.filter(user=self.request.user)
+        if(self.request.user.is_organizer):
+            return Lead.objects.all()
+        else:
+            return Lead.objects.filter(agent=agent[0])
+        
 
 
 # def leads_list(request):
@@ -62,7 +70,7 @@ class LeadDetailView(LoginRequiredMixin,DetailView):
 #     return render(request, 'leads/lead_detail.html', context)
 
 
-class LeadCreateView(LoginRequiredMixin,CreateView):
+class LeadCreateView(OrganizerLoginRequiredMixin, CreateView):
     template_name = "leads/lead_create.html"
     form_class = LeadModelForm
 
@@ -95,7 +103,7 @@ class LeadCreateView(LoginRequiredMixin,CreateView):
 #     return render(request, 'leads/lead_create.html', context)
 
 
-class LeadUpdateView(LoginRequiredMixin,UpdateView):
+class LeadUpdateView(OrganizerLoginRequiredMixin, UpdateView):
     template_name = "leads/lead_update.html"
     form_class = LeadModelForm
     queryset = Lead.objects.all()
@@ -125,7 +133,7 @@ class LeadUpdateView(LoginRequiredMixin,UpdateView):
 #     return render(request, 'leads/lead_update.html', context)
 
 
-class LeadDeleteView(LoginRequiredMixin,DeleteView):
+class LeadDeleteView(OrganizerLoginRequiredMixin, DeleteView):
     template_name = "leads/lead_delete.html"
     queryset = Lead.objects.all()
 
