@@ -12,7 +12,7 @@
                         
             
             {% if request.user.is_authenticated %}
-            <a href="{% url 'leads:leads_list' %}" class="mr-5 hover:text-gray-900">Agents</a>
+            <a href="{% url 'agents:agent-list' %}" class="mr-5 hover:text-gray-900">Agents</a>
             <a href="{% url 'leads:leads_list' %}" class="mr-5 hover:text-gray-900">Leads</a>
             
             <a href="#" class="mr-5 hover:text-gray-900">Your are logged as {{ request.user.username | title }}</a>            
